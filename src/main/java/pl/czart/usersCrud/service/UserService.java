@@ -7,7 +7,7 @@ import pl.czart.usersCrud.dto.UserViewWithoutCars;
 import pl.czart.usersCrud.entity.User;
 import pl.czart.usersCrud.exception.UserNotFoundException;
 import pl.czart.usersCrud.external.RestTemplateService;
-import pl.czart.usersCrud.external.dto.CarList;
+import pl.czart.usersCrud.external.dto.CarDto;
 import pl.czart.usersCrud.repository.UserRepository;
 
 import java.util.List;
@@ -41,14 +41,8 @@ public class UserService {
 
     public UserViewWithCars getUserWithCarsById(Long id) {
         User user = getUserIfExistsOrThrowException(id);
-        CarList carListByUserId = restTemplateService.getCarsByUserId(id);
-        UserViewWithCars userViewWithCars = UserViewWithCars.builder()
-                .name(user.getName())
-                .surname(user.getSurname())
-                .age(user.getAge())
-                .carList(carListByUserId)
-                .build();
-        return userViewWithCars;
+        List<CarDto> carListByUserId = restTemplateService.getCarsByUserId(id);
+        return user.toViewWithCar(carListByUserId);
     }
 
     public UserViewWithoutCars getUserWithoutCarsById(Long id) {

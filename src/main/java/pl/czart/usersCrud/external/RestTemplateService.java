@@ -3,27 +3,29 @@ package pl.czart.usersCrud.external;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.czart.usersCrud.external.dto.CarList;
+import pl.czart.usersCrud.external.dto.CarDto;
+
+import java.util.List;
 
 @Service
 public class RestTemplateService {
 
     private final RestTemplate restTemplate;
 
-    private final String carsUrl = "http://localhost:8090/cars";
+    private final String carsUrl = "http://localhost:8090/cars/";
 
     public RestTemplateService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public CarList getCars() {
-        CarList carList = restTemplate.getForObject(carsUrl, CarList.class);
+    public List<CarDto> getCars() {
+        List<CarDto> carList = restTemplate.getForObject(carsUrl, List.class);
         return carList;
     }
 
-    public CarList getCarsByUserId(Long id) {
+    public List<CarDto> getCarsByUserId(Long id) {
         String url = carsUrl + id;
-        CarList carList = restTemplate.getForObject(url, CarList.class);
+        List<CarDto> carList = restTemplate.getForObject(url, List.class);
         return carList;
     }
 }
