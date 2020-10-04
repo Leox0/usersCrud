@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -23,7 +24,7 @@ public class UserController {
     public ResponseEntity<List<UserView>> getAllUsers() {
         List<UserView> allUsers = userService.getAllUsers();
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.FOUND)
                 .body(allUsers);
     }
 
@@ -33,6 +34,14 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserView> getUserById(@RequestParam Long id){
+        UserView userById = userService.getUserById(id);
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .body(userById);
     }
 
 }

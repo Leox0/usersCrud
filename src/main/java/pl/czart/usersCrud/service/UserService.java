@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.czart.usersCrud.dto.UserRequest;
 import pl.czart.usersCrud.dto.UserView;
 import pl.czart.usersCrud.entity.User;
+import pl.czart.usersCrud.exception.UserNotFoundException;
 import pl.czart.usersCrud.repository.UserRepository;
 
 import java.util.List;
@@ -31,5 +32,11 @@ public class UserService {
                 .stream()
                 .map(User::toView)
                 .collect(Collectors.toList());
+    }
+
+    public UserView getUserById(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User for given id not exists"));
+        return user.toView();
     }
 }
