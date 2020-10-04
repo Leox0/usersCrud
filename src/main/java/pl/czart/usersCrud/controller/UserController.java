@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/cars/{id}")
-    public ResponseEntity<UserViewWithCars> getUserWithCarsById(@RequestParam Long id){
+    public ResponseEntity<UserViewWithCars> getUserWithCarsById(@PathVariable Long id){
         UserViewWithCars userById = userService.getUserWithCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)
@@ -46,7 +46,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@RequestParam Long id){
+    public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@PathVariable Long id){
+        System.out.println("controller");
         UserViewWithoutCars userById = userService.getUserWithoutCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)
