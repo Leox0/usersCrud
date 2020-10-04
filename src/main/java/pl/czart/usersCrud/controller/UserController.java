@@ -47,7 +47,6 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@PathVariable Long id){
-        System.out.println("controller");
         UserViewWithoutCars userById = userService.getUserWithoutCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)

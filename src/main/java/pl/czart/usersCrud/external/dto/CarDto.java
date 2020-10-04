@@ -1,9 +1,11 @@
 package pl.czart.usersCrud.external.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
-public class Car {
+@ToString
+public class CarDto {
 
     private Long id;
 

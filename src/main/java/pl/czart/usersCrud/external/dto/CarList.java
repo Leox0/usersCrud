@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Cars {
+public class CarList {
 
-    private List<Car> cars;
+    private List<CarDto> cars;
 
 }

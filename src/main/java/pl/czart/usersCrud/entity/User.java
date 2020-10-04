@@ -8,11 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.czart.usersCrud.dto.UserViewWithCars;
 import pl.czart.usersCrud.dto.UserViewWithoutCars;
-import pl.czart.usersCrud.external.dto.Car;
-import pl.czart.usersCrud.external.dto.Cars;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
