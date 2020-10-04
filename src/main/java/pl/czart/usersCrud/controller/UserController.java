@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.czart.usersCrud.dto.UserRequest;
-import pl.czart.usersCrud.dto.UserView;
+import pl.czart.usersCrud.dto.UserViewWithCars;
+import pl.czart.usersCrud.dto.UserViewWithoutCars;
 import pl.czart.usersCrud.service.UserService;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<List<UserView>> getAllUsers() {
-        List<UserView> allUsers = userService.getAllUsers();
+    public ResponseEntity<List<UserViewWithoutCars>> getAllUsers() {
+        List<UserViewWithoutCars> allUsers = userService.getAllUsers();
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .body(allUsers);
@@ -36,9 +37,17 @@ public class UserController {
                 .build();
     }
 
+    @GetMapping("/cars/{id}")
+    public ResponseEntity<UserViewWithCars> getUserWithCarsById(@RequestParam Long id){
+        UserViewWithCars userById = userService.getUserWithCarsById(id);
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .body(userById);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<UserView> getUserById(@RequestParam Long id){
-        UserView userById = userService.getUserById(id);
+    public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@RequestParam Long id){
+        UserViewWithoutCars userById = userService.getUserWithoutCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .body(userById);

@@ -2,7 +2,8 @@ package pl.czart.usersCrud.service;
 
 import org.springframework.stereotype.Service;
 import pl.czart.usersCrud.dto.UserRequest;
-import pl.czart.usersCrud.dto.UserView;
+import pl.czart.usersCrud.dto.UserViewWithCars;
+import pl.czart.usersCrud.dto.UserViewWithoutCars;
 import pl.czart.usersCrud.entity.User;
 import pl.czart.usersCrud.exception.UserNotFoundException;
 import pl.czart.usersCrud.repository.UserRepository;
@@ -27,16 +28,25 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserView> getAllUsers() {
+    public List<UserViewWithoutCars> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(User::toView)
+                .map(User::toViewWithoutCar)
                 .collect(Collectors.toList());
     }
 
-    public UserView getUserById(Long id){
-        User user = userRepository.findById(id)
+    public UserViewWithCars getUserWithCarsById(Long id){
+        User user = getUserIfExistsOrThrowException(id);
+        return user.toViewWithCar();
+    }
+
+    public UserViewWithoutCars getUserWithoutCarsById(Long id){
+        User user = getUserIfExistsOrThrowException(id);
+        return user.toViewWithoutCar();
+    }
+
+    private User getUserIfExistsOrThrowException(Long id) {
+        return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User for given id not exists"));
-        return user.toView();
     }
 }

@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.czart.usersCrud.dto.UserView;
+import pl.czart.usersCrud.dto.UserViewWithCars;
+import pl.czart.usersCrud.dto.UserViewWithoutCars;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +31,16 @@ public class User {
     @NotNull
     private int age;
 
-    public UserView toView(){
-        return UserView.builder()
+    public UserViewWithCars toViewWithCar(){
+        return UserViewWithCars.builder()
+                .name(name)
+                .surname(surname)
+                .age(age)
+                .build();
+    }
+
+    public UserViewWithoutCars toViewWithoutCar(){
+        return UserViewWithoutCars.builder()
                 .name(name)
                 .surname(surname)
                 .age(age)

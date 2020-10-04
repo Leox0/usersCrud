@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class UserView {
+public class UserViewWithCars {
 
     private String name;
 
