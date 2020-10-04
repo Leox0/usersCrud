@@ -8,11 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.czart.usersCrud.dto.UserViewWithCars;
 import pl.czart.usersCrud.dto.UserViewWithoutCars;
+import pl.czart.usersCrud.external.dto.Car;
+import pl.czart.usersCrud.external.dto.Cars;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,7 +31,7 @@ public class User {
     @NotNull
     private int age;
 
-    public UserViewWithCars toViewWithCar(){
+    public UserViewWithCars toViewWithCar() {
         return UserViewWithCars.builder()
                 .name(name)
                 .surname(surname)
@@ -39,7 +39,7 @@ public class User {
                 .build();
     }
 
-    public UserViewWithoutCars toViewWithoutCar(){
+    public UserViewWithoutCars toViewWithoutCar() {
         return UserViewWithoutCars.builder()
                 .name(name)
                 .surname(surname)
