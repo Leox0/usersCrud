@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
+
+    public static final String USER_FOR_GIVEN_ID_NOT_EXISTS = "User for given id not exists";
+
     private final UserRepository userRepository;
     private final RestTemplateService restTemplateService;
 
@@ -23,13 +26,14 @@ public class UserService {
         this.restTemplateService = restTemplateService;
     }
 
-    public void createUser(UserRequest userRequest) {
+    public UserViewWithoutCars createUser(UserRequest userRequest) {
         User user = User.builder()
                 .name(userRequest.getName())
                 .surname(userRequest.getSurname())
                 .age(userRequest.getAge())
                 .build();
         userRepository.save(user);
+        return user.toViewWithoutCar();
     }
 
     public List<UserViewWithoutCars> getAllUsers() {
@@ -52,7 +56,7 @@ public class UserService {
 
     private User getUserIfExistsOrThrowException(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User for given id not exists"));
+                .orElseThrow(() -> new UserNotFoundException(USER_FOR_GIVEN_ID_NOT_EXISTS));
     }
 
 }

@@ -1,13 +1,11 @@
 package pl.czart.usersCrud.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import pl.czart.usersCrud.dto.UserViewWithCars;
 import pl.czart.usersCrud.dto.UserViewWithoutCars;
 import pl.czart.usersCrud.external.dto.CarDto;

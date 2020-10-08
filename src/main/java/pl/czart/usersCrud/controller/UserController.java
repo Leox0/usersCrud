@@ -30,15 +30,15 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postUser(@RequestBody UserRequest userRequest) {
-        userService.createUser(userRequest);
+    public ResponseEntity<UserViewWithoutCars> postUser(@RequestBody UserRequest userRequest) {
+        UserViewWithoutCars user = userService.createUser(userRequest);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .build();
+                .body(user);
     }
 
     @GetMapping("/cars/{id}")
-    public ResponseEntity<UserViewWithCars> getUserWithCarsById(@PathVariable Long id){
+    public ResponseEntity<UserViewWithCars> getUserWithCarsById(@PathVariable Long id) {
         UserViewWithCars userById = userService.getUserWithCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@PathVariable Long id){
+    public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@PathVariable Long id) {
         UserViewWithoutCars userById = userService.getUserWithoutCarsById(id);
         return ResponseEntity
                 .status(HttpStatus.FOUND)
