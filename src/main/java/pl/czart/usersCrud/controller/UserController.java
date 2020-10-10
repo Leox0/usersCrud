@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<List<UserViewWithoutCars>> getAllUsers() {
         List<UserViewWithoutCars> allUsers = userService.getAllUsers();
         return ResponseEntity
-                .status(HttpStatus.FOUND)
+                .status(HttpStatus.OK)
                 .body(allUsers);
     }
 
