@@ -42,7 +42,7 @@ public class UserController {
     public ResponseEntity<UserViewWithCars> getUserWithCarsById(@PathVariable Long id) {
         UserViewWithCars userById = userService.getUserWithCarsById(id);
         return ResponseEntity
-                .status(HttpStatus.FOUND)
+                .status(HttpStatus.OK)
                 .body(userById);
     }
 
@@ -50,7 +50,7 @@ public class UserController {
     public ResponseEntity<UserViewWithoutCars> getUserWithoutCarsById(@PathVariable Long id) {
         UserViewWithoutCars userById = userService.getUserWithoutCarsById(id);
         return ResponseEntity
-                .status(HttpStatus.FOUND)
+                .status(HttpStatus.OK)
                 .body(userById);
     }
 

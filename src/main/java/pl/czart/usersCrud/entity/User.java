@@ -42,6 +42,7 @@ public class User {
 
     public UserViewWithoutCars toViewWithoutCar() {
         return UserViewWithoutCars.builder()
+                .id(id)
                 .name(name)
                 .surname(surname)
                 .age(age)

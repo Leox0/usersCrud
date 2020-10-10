@@ -7,6 +7,8 @@ import lombok.Value;
 @Builder
 public class UserViewWithoutCars {
 
+    private Long id;
+
     private String name;
 
     private String surname;
