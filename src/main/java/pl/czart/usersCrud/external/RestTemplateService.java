@@ -12,7 +12,7 @@ public class RestTemplateService {
 
     private final RestTemplate restTemplate;
 
-    private final String carsUrl = "http://localhost:8090/cars/";
+    private final String carsUrl = "https://damp-gorge-76747.herokuapp.com/cars/";
 
     public RestTemplateService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
