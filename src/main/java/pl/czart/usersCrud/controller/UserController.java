@@ -10,6 +10,7 @@ import pl.czart.usersCrud.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
